@@ -1,11 +1,14 @@
 import Link from "next/link";
-
-const categories = [
-    { name: "react", slug: "react" },
-    { name: "tailwindcss", slug: "tailwindcss" },
-];
+import { useEffect, useState } from "react";
+import { getCategories } from "../services";
 
 const Header = () => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        getCategories().then((res) => setCategories(res))
+    }, [])
+
     return (
         <div className="container mx-auto px-10 mb-8">
             <div className="border-b w-full inline-block border-blue-400 py-8">
